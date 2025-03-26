@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MarkDown Editor</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="hero light-theme ">
+      <h1>MarkDown Editor</h1>
+      <div class="buttons">
+        <button id="theme-button" onclick="changeTheme()">Dark</button>
+        <button id="reset-button" onclick="resetText()">Reset</button>
+        <button id="copy-button" onclick="copyText()">Copy</button>
+      </div>
+    </div>
+    <div class="main light-theme">
+      <div class="right ">
+        <h1>Input content</h1>
+        <textarea
+          id="inputContent"
+          oninput="takeInput()"
+          onkeydown="insertTabSpaces(event)"
+         
+        >
+        </textarea>
+      </div>
+      <div class="left light-theme">
+        <h1>Output content</h1>
+        <div id="outputContent"></div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
