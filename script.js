@@ -2,13 +2,14 @@ console.log("hello");
 
 const inputData = document.getElementById("inputContent");
 const outputContent = document.getElementById("outputContent");
-
+const copyButton=document.getElementById("copy-button")
 function takeInput() {
   const text = inputData.value;
   console.log(text);
   console.log(marked.parse(text));
 
   outputContent.innerHTML = marked.parse(text);
+  copyButton.disabled = inputContent.trim() === '';
 }
 
 // Reset button functionality
@@ -47,21 +48,24 @@ function copyText() {
 }
 
 //change theme functionality
+let isDarkMode = false;
 
-function changeTheme() {
-  const current = document.getElementById("theme-button");
-  // console.log(current.innerText);
-  if (current.innerText === "Dark") {
-    document.querySelectorAll(".light-theme").forEach((element) => {
-      element.classList.remove("light-theme");
-      element.classList.add("dark-theme");
-      current.innerText = "Light";
+function toggleTheme() {
+    const themeElements = document.querySelectorAll('.light-theme, .dark-theme');
+    const themeButton = document.getElementById('theme-button');
+    const themeIcon = themeButton.querySelector('.theme-icon');
+
+    themeElements.forEach(element => {
+        element.classList.toggle('light-theme');
+        element.classList.toggle('dark-theme');
     });
-  } else {
-    document.querySelectorAll(".dark-theme").forEach((element) => {
-      element.classList.remove("dark-theme");
-      element.classList.add("light-theme");
-      current.innerText = "Dark";
-    });
-  }
+
+    isDarkMode = !isDarkMode;
+    
+    // Update button text and icon
+    if (isDarkMode) {
+        themeButton.innerHTML = '<span class="theme-icon">☀️</span> Light Mode';
+    } else {
+        themeButton.innerHTML = '<span class="theme-icon">🌙</span> Dark Mode';
+    }
 }
